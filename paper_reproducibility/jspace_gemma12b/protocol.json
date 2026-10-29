@@ -1,0 +1,27 @@
+{
+  "models": {
+    "gemma12b": "models/gemma-4-12B-it"
+  },
+  "datasets": {
+    "company": "jspace_relation_binding",
+    "four": "jspace_cross_nohint",
+    "five": "jspace_five_scenarios"
+  },
+  "schedule": [
+    {
+      "model": "gemma12b",
+      "datasets": [
+        "company",
+        "four",
+        "five"
+      ],
+      "n": 3516
+    }
+  ],
+  "reused": "Exact locked 3516 source jobs from previous model comparison; all generations new.",
+  "scope": "Ten relation scenarios. Company: latest relation-binding formal dataset, all924 runs, no70pilot. Four: no-hint version. Five: locked new scenario corpus. Prior repeated difficulty variants and causal patches are not distinct scenarios and are not rerun.",
+  "settings": "BF16 eager, native chat enable_thinking=False, greedy, max128, original batches; native generation EOS plus tokenizer EOS and turn-end.",
+  "controls": "No prompt edits, no additional relationship warnings, no revised scoring or screening thresholds. Original company dev/validation retained for reporting, already observed historically.",
+  "limits": "Cross-family comparison changes model family, training, architecture and parameter count. Not a size-only effect.",
+  "python": "./llm_knowledge/.venv/bin/python"
+}

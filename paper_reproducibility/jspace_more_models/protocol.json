@@ -1,0 +1,43 @@
+{
+  "models": {
+    "muse30b": {
+      "path": "models/Muse-Glimmer-30B",
+      "runtime": "./llm_knowledge/.venv/bin/python",
+      "gpu": 1,
+      "max_new_tokens": 2048,
+      "batch": 48,
+      "loader": "image",
+      "chat_kwargs": {
+        "reasoning_strength": "low",
+        "current_date": "2026-10-15"
+      }
+    },
+    "kimi16b": {
+      "path": "models/Kimi-VL-A3B-Instruct",
+      "runtime": "python",
+      "gpu": 0,
+      "max_new_tokens": 128,
+      "batch": 48,
+      "loader": "causal_custom",
+      "chat_kwargs": {},
+      "pythonpath": "./jspace_more_models/kimi_runtime"
+    },
+    "glm9b": {
+      "path": "models/GLM-4.1V-9B-Thinking",
+      "runtime": "./llm_knowledge/.venv/bin/python",
+      "gpu": 0,
+      "max_new_tokens": 2048,
+      "batch": 48,
+      "loader": "image",
+      "chat_kwargs": {}
+    }
+  },
+  "datasets": [
+    "company",
+    "four",
+    "five"
+  ],
+  "per_model_n": 3516,
+  "settings": "BF16 eager greedy. Native chat templates, identical user prompts and gold. Thinking models get2048 total tokens; Kimi nonthinking128. No forced answer prefixes. Native reasoning/answer protocol separated; exact single outer Markdown fence stripped only in separate auxiliary view. Original strict scoring retained. No outcome-driven prompt changes. Technical smoke first4company+first4four per model, excluded from formal results. Execution revision: batch48 all datasets, direct GPU checkpoint load. Initial Muse batch12 records archived and excluded; Kimi preformal failure uses recommended transformers4.48.2 in project-local runtime.",
+  "limits": "Model family, size, architecture, native system/chat format, reasoning mode and generation budget differ. Compare observed behavior; no size-only or reasoning-only causal claim. Previously used dataset, not new confirmatory validation."
+}

@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.env
+.venv/
+models/
+reproduced/
+paper_reproducibility/configs/paths.local.json
+paper_reproducibility/**/results/
+paper_reproducibility/**/*.jsonl
+paper_reproducibility/**/*.pt

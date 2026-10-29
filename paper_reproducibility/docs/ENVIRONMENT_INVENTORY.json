@@ -1,0 +1,224 @@
+[
+  {
+    "record": "jspace_all_models/results/27b_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0",
+    "precision": "bfloat16"
+  },
+  {
+    "record": "jspace_all_models/results/2b_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0",
+    "precision": "bfloat16"
+  },
+  {
+    "record": "jspace_core_expanded/results/qwen2b/environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0"
+  },
+  {
+    "record": "jspace_core_expanded/results/qwen8b/environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.54.0"
+  },
+  {
+    "record": "jspace_cross_nohint/data/prior_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.54.0",
+    "python": "3.11.14 (main, Jun 17 2026, 19:54:40) [GCC 14.3.0]",
+    "precision": "bfloat16"
+  },
+  {
+    "record": "jspace_cross_nohint/data/with_hint_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.54.0",
+    "precision": "bfloat16"
+  },
+  {
+    "record": "jspace_cross_nohint/results/environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.54.0",
+    "precision": "bfloat16"
+  },
+  {
+    "record": "jspace_cross_scenario/data/prior_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.54.0",
+    "python": "3.11.14 (main, Jun 17 2026, 19:54:40) [GCC 14.3.0]",
+    "precision": "bfloat16"
+  },
+  {
+    "record": "jspace_cross_scenario/results/environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.54.0",
+    "precision": "bfloat16"
+  },
+  {
+    "record": "jspace_family_intervention/results/gemma/environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0"
+  },
+  {
+    "record": "jspace_family_intervention/results/glm/environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0"
+  },
+  {
+    "record": "jspace_family_intervention/results/glm/short_resume_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0"
+  },
+  {
+    "record": "jspace_family_intervention/results/kimi/environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.48.2"
+  },
+  {
+    "record": "jspace_family_intervention/results/muse/environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0"
+  },
+  {
+    "record": "jspace_five_scenarios/data/prior_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.54.0",
+    "python": "3.11.14 (main, Jun 17 2026, 19:54:40) [GCC 14.3.0]",
+    "precision": "bfloat16"
+  },
+  {
+    "record": "jspace_five_scenarios/results/environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.54.0",
+    "precision": "bfloat16"
+  },
+  {
+    "record": "jspace_five_small/results/environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0",
+    "precision": "bfloat16"
+  },
+  {
+    "record": "jspace_gemma12b/results/gemma12b_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0",
+    "precision": "bfloat16"
+  },
+  {
+    "record": "jspace_more_models/results/glm9b_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0"
+  },
+  {
+    "record": "jspace_more_models/results/kimi16b_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.48.2"
+  },
+  {
+    "record": "jspace_more_models/results/muse30b_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0"
+  },
+  {
+    "record": "jspace_more_models/results/before_truncation_repair/glm9b_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0"
+  },
+  {
+    "record": "jspace_more_models/results/before_truncation_repair/kimi16b_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.48.2"
+  },
+  {
+    "record": "jspace_more_models/results/before_truncation_repair/muse30b_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0"
+  },
+  {
+    "record": "jspace_multimodel_intervention/results/kimi/environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.48.2"
+  },
+  {
+    "record": "jspace_multimodel_intervention/results/qwen27b/environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0"
+  },
+  {
+    "record": "jspace_multimodel_intervention/results/qwen2b/environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0"
+  },
+  {
+    "record": "jspace_relation_binding/results/environment_main.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.54.0",
+    "python": "3.11.14 (main, Jun 17 2026, 19:54:40) [GCC 14.3.0]",
+    "precision": "bfloat16"
+  },
+  {
+    "record": "jspace_relation_mechanism_round1/data/prior_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.54.0",
+    "python": "3.11.14 (main, Jun 17 2026, 19:54:40) [GCC 14.3.0]",
+    "precision": "bfloat16"
+  },
+  {
+    "record": "jspace_relation_mechanism_round1/results/environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.54.0"
+  },
+  {
+    "record": "jspace_relation_recovery/data/prior_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.54.0",
+    "python": "3.11.14 (main, Jun 17 2026, 19:54:40) [GCC 14.3.0]",
+    "precision": "bfloat16"
+  },
+  {
+    "record": "jspace_relation_transfer/data/prior_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.54.0",
+    "python": "3.11.14 (main, Jun 17 2026, 19:54:40) [GCC 14.3.0]",
+    "precision": "bfloat16"
+  },
+  {
+    "record": "jspace_relation_transfer/results/environment_0.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.54.0"
+  },
+  {
+    "record": "jspace_relation_transfer/results/environment_1.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "4.54.0"
+  },
+  {
+    "record": "jspace_small_models_scope/results/gemma2_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0"
+  },
+  {
+    "record": "jspace_small_models_scope/results/llama3_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0"
+  },
+  {
+    "record": "jspace_small_models_scope/results/phi4mini_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0"
+  },
+  {
+    "record": "jspace_small_models_scope/results/qwen15_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0"
+  },
+  {
+    "record": "jspace_small_models_scope/results/qwen3_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0"
+  },
+  {
+    "record": "jspace_small_models_scope/results/qwen4_environment.json",
+    "torch": "2.10.0+cu130",
+    "transformers": "5.15.0"
+  }
+]

@@ -1,0 +1,86 @@
+{
+  "version": "1.0",
+  "seed": 20261016,
+  "model_path": "models/Qwen3-8B",
+  "precision": "bfloat16",
+  "attn_implementation": "eager",
+  "batch_size": 12,
+  "max_new_tokens": 128,
+  "counts": {
+    "pilot": 70,
+    "development": 462,
+    "validation": 462
+  },
+  "conditions": {
+    "A": "总部单字段",
+    "B": "办公城市+总部",
+    "C": "发布会城市+总部",
+    "D": "成立年份+总部"
+  },
+  "forms": {
+    "weak": "办公室与城市分句连接",
+    "direct": "办公室与城市直接连接",
+    "label": "明确标注办公室城市",
+    "missing": "明确总部未披露（诊断）",
+    "supported": "明确总部在办公城市（正对照）"
+  },
+  "template_split": {
+    "pilot": [
+      "T13",
+      "T14"
+    ],
+    "development": [
+      "T01",
+      "T04",
+      "T05",
+      "T08",
+      "T09",
+      "T12"
+    ],
+    "validation": [
+      "T02",
+      "T03",
+      "T06",
+      "T07",
+      "T10",
+      "T11"
+    ]
+  },
+  "primary": "Validation weak-form D minus B in office-city-to-headquarters misattribution; equal weight of target-first/last, each template equal weight.",
+  "secondary": [
+    "Same-city-type C minus B",
+    "D minus A",
+    "C minus A",
+    "B minus A",
+    "Weak minus direct/label contrast interaction",
+    "Explicit missing and supported diagnostic controls kept separate"
+  ],
+  "normalization": "Strip value whitespace only; cities must exactly match. Year integer or exact digit string allowed. No city aliases.",
+  "scoring": "Separate office_city_misuse, launch_city_misuse, other_candidate (nonempty other string), string_null, true_null, missing/invalid, and strict protocol format issues. JSON string null never counts as a city.",
+  "bootstrap": {
+    "replicates": 2000,
+    "seed": 20261016,
+    "unit": "template cluster retaining its three entities, all forms and field orders",
+    "ci": "percentile 95%"
+  },
+  "gate": {
+    "min_primary": 0.1,
+    "min_positive_validation_templates": 4,
+    "require_ci_lower_positive": true,
+    "require_development_same_direction": true,
+    "max_format_excess": 0.05,
+    "interpretation": "Passing weak-form gate supports at most weak-binding mechanism follow-up if direct/label do not replicate. No automatic claim of general field interference."
+  },
+  "pilot_acceptance": "Valid JSON structure, exact keys/order/types and no truncation on every pilot row. String-null is separately logged as an instruction violation and does not trigger prompt tuning.",
+  "lens_policy": "Only after template-held-out replication. Any city readout is a lexical representation, not evidence that its headquarters relation is supported. Prefix diagnostics separate from natural outputs.",
+  "human_review": {
+    "second_human_review": false,
+    "method": "Handwritten template semantic review and exhaustive gold/city/variant invariants."
+  },
+  "limitations": [
+    "Six held-out templates give limited generalization and wide uncertainty.",
+    "Explicit label forms remain semantically similar despite distinct surrounding text.",
+    "Adding release-event evidence changes the context versus the old pilot; no direct causal old-versus-new comparison.",
+    "No real-world nonexistence guarantee for invented company names."
+  ]
+}

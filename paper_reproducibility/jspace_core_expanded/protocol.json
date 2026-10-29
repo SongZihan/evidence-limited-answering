@@ -1,0 +1,38 @@
+{
+  "models": {
+    "qwen2b": {
+      "path": "models/Qwen3.5-2B",
+      "layer": 22,
+      "rank": 1,
+      "gpu": 0,
+      "runtime": "./llm_knowledge/.venv/bin/python",
+      "original_results": "jspace_multimodel_intervention/results/qwen2b",
+      "expected_transformers": "5.15.0",
+      "basis_sha256": "6776a4471f921199c4890fb0bd9d91fcd7d669a56cfd69074c93da723ce18321"
+    },
+    "qwen8b": {
+      "path": "models/Qwen3-8B",
+      "layer": 33,
+      "rank": 4,
+      "gpu": 1,
+      "runtime": "python",
+      "original_results": "jspace_relation_mechanism_round1/results",
+      "expected_transformers": "4.54.0",
+      "basis_sha256": "dd319eee4e361b9ab05e4ca7ff62b965c08824c2b37be90c74fa26eb1fa78a36"
+    }
+  },
+  "seed": 20261026,
+  "max_new_tokens": 128,
+  "precision": "BF16",
+  "batch_size": 1,
+  "decoding": "greedy, native enable_thinking=False, eager attention",
+  "scope": "24 new templates x 4 new companies/entity combinations x 3 evidence conditions x 2 expressions x B/D =1152 natural generations/model; 96 per cell. 24 template clusters, not1152 independent observations.",
+  "independence": "No old template or company reused. City lexicon held fixed; unordered city pairs disjoint from original exploration/validation. No outcome-dependent edits.",
+  "intervention": "Frozen original basis and random basis; no SVD or layer selection. Weak only: 288 B/D pairs/model. Natural B,D; matched-prefix replay B,D; self B,D; forward,reverse,full,random. Direct: natural B,D only.",
+  "boundary": "Qwen3-8B: last exact opening-JSON colon boundary as original. Qwen3.5-2B: first natural target colon boundary as original. No fallback. Missing retained in denominators; no repair credited.",
+  "truncation": "Fixed128 new tokens per call, retain truncation as failure, no long automatic retries.",
+  "scoring": "Both strict JSON and one-complete-outer-fence-removed scores. Primary causal summary content scoring as figure8; primary behavioral summary strict. JSON null distinct from string null.",
+  "success": "Descriptive extended criteria registered before execution: weak absent correct-null gain >=25pp; >=18/24 templates positive; supported and swapped each >=90/96 correct and loss <=6/96; source->null exceeds format->null; gain>one-seed random; all288 weak PN pairs available; self tokens identical. Report ceiling per template separately; no changed threshold after results.",
+  "statistics": "2000 paired bootstrap samples over24 template clusters for primary behavior interaction and forward null gain only; template tables and transitions; no multiple significance tests.",
+  "report": "New validation separate from old. No new J-lens calibration or scans in this behavioral/causal replication. Frozen checkpoints checked against historical hashes."
+}

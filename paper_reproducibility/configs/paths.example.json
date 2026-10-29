@@ -1,0 +1,15 @@
+{
+  "models/GLM-4.1V-9B-Thinking": "models/GLM-4.1V-9B-Thinking",
+  "models/Kimi-VL-A3B-Instruct": "models/Kimi-VL-A3B-Instruct",
+  "models/Muse-Glimmer-30B": "models/Muse-Glimmer-30B",
+  "models/Qwen3-8B": "models/Qwen3-8B",
+  "models/Qwen3.5-27B": "models/Qwen3.5-27B",
+  "models/Qwen3.5-2B": "models/Qwen3.5-2B",
+  "models/gemma-4-12B-it": "models/gemma-4-12B-it",
+  "models/gemma2": "models/gemma2",
+  "models/llama3": "models/llama3",
+  "models/phi4mini": "models/phi4mini",
+  "models/qwen15": "models/qwen15",
+  "models/qwen3": "models/qwen3",
+  "models/qwen4": "models/qwen4"
+}

@@ -1,0 +1,39 @@
+{
+  "model_path": "models/Qwen3-8B",
+  "seed": 20261015,
+  "batch_size": 1,
+  "max_new_tokens": 128,
+  "layers": [
+    9,
+    13,
+    17,
+    21,
+    25,
+    29,
+    33
+  ],
+  "patch_layers": [
+    29,
+    33
+  ],
+  "ranks": [
+    1,
+    4
+  ],
+  "final_layer": 35,
+  "split": "T01-T04 development; T05-T08 validation; disjoint unordered city pairs, shared lexical city set; all new company names.",
+  "gate": "Absent weak D-B >= .125; >=3/4 positive templates; direct D-B strictly smaller; supported+swapped HQ correctness >=.90 across B/D and both forms.",
+  "selection": "Weak development PN: uncentered SVD of all 48 B-D pairs, all evidence; layers29/33 ranks1/4. Eligible if office misuse decreases and each supported stratum loses <=1 correct. Max absent null gain; tie rank then layer. If none, max macro three-stratum correctness gain, tie rank/layer.",
+  "validation": "Only after selection.json or gate-fail decision is frozen. On fail no intervention, observational validation proceeds.",
+  "interventions": "Weak PN only. Same-material B->D, reverse D->B, full B->D, norm-matched random B->D, self on both conditions. One-time prefill last-position patch; recipient cache thereafter.",
+  "missing_pn": "Keep behavioral rows; report coverage. If any of 48 development weak pairs lacks PN, abort intervention rather than change SVD population. Missing validation pairs count as no improvement and fail success coverage.",
+  "random": "One seeded orthonormal basis per selected layer/rank. Match projected perturbation norm per pair; zero intervention stays zero; numerically zero random projection uses first basis vector.",
+  "success": "Validation absent null gain>=4/16, >=3/4 templates improve; supported and swapped each >=15/16, loss<=1; office->null transitions exceed format->null; null gain exceeds random; all48pairs available.",
+  "statistics": "2000 template paired bootstrap for absent behavior interaction and intervention null gain only; descriptive, no p-values.",
+  "limits": [
+    "J-lens calibrated on English passages; readout quality on this task not guaranteed.",
+    "Subspace is field-requirement difference, not preidentified binding mechanism.",
+    "B donor is available at inference; this is causal mediation experiment, not deployable correction.",
+    "Natural PN may carry syntax differences; forced-prefix observation is auxiliary only."
+  ]
+}

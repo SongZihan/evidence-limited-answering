@@ -1,0 +1,119 @@
+{
+  "seed": 20261014,
+  "model_path": "models/Qwen3-8B",
+  "batch_size": 16,
+  "max_new_tokens": 128,
+  "precision": "bfloat16",
+  "attention": "eager",
+  "scope": "Exploratory cross-scenario pilot, all 32 templates. No confirmation/validation split; retain all scenarios. Fresh templates and entities required for formal study.",
+  "counts": {
+    "main": 1024,
+    "diagnostic": 128,
+    "total": 1152,
+    "templates_per_family": 8,
+    "entities_per_template": 4
+  },
+  "conditions": {
+    "A": "target only",
+    "B": "target+source",
+    "C": "target+same-type control",
+    "D": "target+different-type control"
+  },
+  "families": {
+    "person": {
+      "name": "人物履历",
+      "fields": [
+        "出生城市",
+        "工作城市",
+        "毕业院校所在城市",
+        "入职年份"
+      ],
+      "definitions": "出生城市指材料明确说明该人物出生的城市；工作城市指材料明确说明该人物工作的城市；毕业院校所在城市指材料明确说明其毕业院校所在的城市；入职年份指材料明确说明该人物入职的年份。工作、就学与出生关系不能互相替代。"
+    },
+    "event": {
+      "name": "活动信息",
+      "fields": [
+        "本届活动举办城市",
+        "主办机构所在城市",
+        "往届活动举办城市",
+        "本届活动届数"
+      ],
+      "definitions": "本届活动举办城市指材料明确说明本届活动举行的城市；主办机构所在城市指材料明确说明主办机构所在的城市；往届活动举办城市指材料提及的那一届往届活动举办的城市；本届活动届数指材料明确说明本届活动是第几届。机构地址、往届地点不能替代本届举办地点。"
+    },
+    "product": {
+      "name": "商品信息",
+      "fields": [
+        "产品生产城市",
+        "销售商所在城市",
+        "仓库所在城市",
+        "产品型号"
+      ],
+      "definitions": "产品生产城市指材料明确说明该产品生产或制造的城市；销售商所在城市指材料明确说明该产品销售商所在的城市；仓库所在城市指材料明确说明存放该产品的仓库所在的城市；产品型号指材料明确给出的型号。销售、仓储与生产关系不能互相替代。"
+    },
+    "research": {
+      "name": "科研成果",
+      "fields": [
+        "研究资助机构",
+        "作者所属机构",
+        "数据提供机构",
+        "发表年份"
+      ],
+      "definitions": "研究资助机构指材料明确说明为该项研究提供经费资助的机构；作者所属机构指材料明确说明该成果作者任职或隶属的机构；数据提供机构指材料明确说明为该项研究提供数据的机构；发表年份指材料明确说明该成果发表的年份。任职、提供数据与提供经费资助是不同关系，不能互相替代。"
+    }
+  },
+  "controls": "First entity of all 8 templates per family, weak+explicit missing or weak+explicit supported different value, conditions B,D; 32 runs/family.",
+  "contrasts": [
+    [
+      "B",
+      "A"
+    ],
+    [
+      "C",
+      "A"
+    ],
+    [
+      "D",
+      "A"
+    ],
+    [
+      "C",
+      "B"
+    ],
+    [
+      "D",
+      "B"
+    ],
+    [
+      "D",
+      "C"
+    ]
+  ],
+  "primary_metric": "Exact source-value misattribution when target evidence absent. Structural-invalid outputs and string null are separate, not source errors. Denominator all planned rows.",
+  "interaction": "(X-Y)weak minus (X-Y)direct, same entities paired, equal template weight; both positive and negative effects allowed.",
+  "discovery_rule": {
+    "min_abs_field_effect": 0.125,
+    "min_same_sign_templates": 5,
+    "min_abs_interaction": 0.125,
+    "min_interaction_same_sign_templates": 5,
+    "min_source_share": 0.6,
+    "min_supported_correct": 0.9375,
+    "min_supported_per_condition": 0.875,
+    "max_protocol_failure": 0.05,
+    "meaning": "For a full replication, the SAME prespecified contrast must pass field effect in at least one form AND expression interaction; positive and negative directions allowed. Source share among non-null, non-string-null valid target strings in the qualifying form must be >=60%. Supported controls must pass overall and per B/D. Partial replication passes a field effect and validity/source/support gates but no qualifying interaction. Error alone is not replication.",
+    "across_scenarios": "Proceed to formal expansion only if >=2 new scenarios meet full replication. Other outcomes remain reported.",
+    "caveat": "Operational exploratory thresholds, not significance tests. Six contrasts/family are screened without multiplicity-corrected inference. Intervals descriptive, not gate p-values."
+  },
+  "bootstrap": {
+    "replicates": 2000,
+    "seed": 20261014,
+    "unit": "eight paired template clusters, retaining four entities and all conditions/forms",
+    "ci": "percentile 95%"
+  },
+  "limitations": [
+    "One model; target first only.",
+    "Generated fictional names do not guarantee real-world nonexistence.",
+    "Direct and split wording is a bundled syntax intervention, not a pure abstract clarity manipulation.",
+    "No second human annotation; handcrafted semantic review plus automated invariants.",
+    "Scope pilot may select favorable contrasts; formal preregistration needs new data."
+  ]
+}

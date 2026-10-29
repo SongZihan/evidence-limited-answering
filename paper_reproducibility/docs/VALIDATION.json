@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "gpu_rerun": false,
+  "checks": [
+    "Python syntax and all JSON/JSONL parse",
+    "Four row-level manuscript summaries match stored scientific values",
+    "Expanded-validation summary matches publication numbers",
+    "Seven English figures regenerated and visually inspected",
+    "Private path/credential scan clean, including tensor pickle metadata",
+    "Original source and experimental files unchanged (699 hashes)"
+  ],
+  "notes": [
+    "Original and expanded validation remain separate",
+    "No model weights or large state dumps",
+    "Figure1 is maintained as editable SVG; figures2–7 are data-generated",
+    "Some historical environment versions are incompletely recorded; see inventory"
+  ],
+  "extracted_archive_test": {
+    "verify": "passed",
+    "summarize": "passed",
+    "plots": "passed",
+    "gpu": "not run"
+  },
+  "cpu_environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "matplotlib": "3.11.2",
+    "Pillow": "13.0.0",
+    "lxml": "6.1.1",
+    "CairoSVG": "2.9.1"
+  }
+}

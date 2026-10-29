@@ -1,0 +1,133 @@
+{
+  "seed": 20261014,
+  "model_path": "models/Qwen3.5-2B",
+  "batch_size": 16,
+  "max_new_tokens": 128,
+  "precision": "bfloat16",
+  "attention": "eager",
+  "scope": "Five NEW exploratory scenarios, 40 templates, no confirmatory split. Same no-hint instruction framework and discovery thresholds as previous pilot.",
+  "counts": {
+    "main": 1280,
+    "diagnostic": 160,
+    "total": 1440,
+    "templates_per_family": 8,
+    "entities_per_template": 4
+  },
+  "conditions": {
+    "A": "target only",
+    "B": "target+source",
+    "C": "target+same-type control",
+    "D": "target+different-type control"
+  },
+  "families": {
+    "shipment": {
+      "name": "物流信息",
+      "fields": [
+        "收货城市",
+        "发货城市",
+        "中转城市",
+        "包裹重量"
+      ],
+      "definitions": "收货城市指材料明确说明包裹收件地址所在的城市；发货城市指材料明确说明包裹发出的城市；中转城市指材料明确说明包裹途中中转的城市；包裹重量指材料明确说明的重量，以千克为单位输出数值。"
+    },
+    "film": {
+      "name": "影视作品",
+      "fields": [
+        "故事发生城市",
+        "拍摄城市",
+        "首映城市",
+        "片长"
+      ],
+      "definitions": "故事发生城市指材料明确说明影片故事设定发生的城市；拍摄城市指材料明确说明影片进行实景拍摄的城市；首映城市指材料明确说明影片首映活动举办的城市；片长指材料明确说明的影片时长，以分钟为单位输出数值。"
+    },
+    "artifact": {
+      "name": "文物档案",
+      "fields": [
+        "出土城市",
+        "展出城市",
+        "修复城市",
+        "入藏年份"
+      ],
+      "definitions": "出土城市指材料明确说明文物发掘出土的城市；展出城市指材料明确说明文物进行展览的城市；修复城市指材料明确说明文物接受修复的城市；入藏年份指材料明确说明文物被收入馆藏的年份。"
+    },
+    "book": {
+      "name": "图书出版",
+      "fields": [
+        "著作权持有机构",
+        "出版机构",
+        "印刷机构",
+        "出版年份"
+      ],
+      "definitions": "著作权持有机构指材料明确说明持有该书著作权的机构；出版机构指材料明确说明负责出版该书的机构；印刷机构指材料明确说明承担该书印刷工作的机构；出版年份指材料明确说明该书出版的年份。"
+    },
+    "procurement": {
+      "name": "项目采购",
+      "fields": [
+        "合同签订日期",
+        "中标日期",
+        "招标公告日期",
+        "项目编号"
+      ],
+      "definitions": "合同签订日期指材料明确说明该项目合同实际签订的日期；中标日期指材料明确说明该项目确定中标结果的日期；招标公告日期指材料明确说明该项目招标公告发布的日期；项目编号指材料明确给出的编号。日期字段统一以YYYY-MM-DD格式输出。"
+    }
+  },
+  "controls": "First entity of all 8 templates per family, weak+explicit missing or weak+explicit supported different value, conditions B,D; 32 runs/family.",
+  "contrasts": [
+    [
+      "B",
+      "A"
+    ],
+    [
+      "C",
+      "A"
+    ],
+    [
+      "D",
+      "A"
+    ],
+    [
+      "C",
+      "B"
+    ],
+    [
+      "D",
+      "B"
+    ],
+    [
+      "D",
+      "C"
+    ]
+  ],
+  "primary_metric": "Exact source-value misattribution when target evidence absent. Structural-invalid outputs and string null are separate, not source errors. Denominator all planned rows.",
+  "interaction": "(X-Y)weak minus (X-Y)direct, same entities paired, equal template weight; both positive and negative effects allowed.",
+  "discovery_rule": {
+    "min_abs_field_effect": 0.125,
+    "min_same_sign_templates": 5,
+    "min_abs_interaction": 0.125,
+    "min_interaction_same_sign_templates": 5,
+    "min_source_share": 0.6,
+    "min_supported_correct": 0.9375,
+    "min_supported_per_condition": 0.875,
+    "max_protocol_failure": 0.05,
+    "meaning": "For a full replication, the SAME prespecified contrast must pass field effect in at least one form AND expression interaction; positive and negative directions allowed. Source share among non-null, non-string-null valid target strings in the qualifying form must be >=60%. Supported controls must pass overall and per B/D. Partial replication passes a field effect and validity/source/support gates but no qualifying interaction. Error alone is not replication.",
+    "across_scenarios": "Proceed to formal expansion only if >=2 new scenarios meet full replication. Other outcomes remain reported.",
+    "caveat": "Operational exploratory thresholds, not significance tests. Six contrasts/family are screened without multiplicity-corrected inference. Intervals descriptive, not gate p-values."
+  },
+  "bootstrap": {
+    "replicates": 2000,
+    "seed": 20261014,
+    "unit": "eight paired template clusters, retaining four entities and all conditions/forms",
+    "ci": "percentile 95%"
+  },
+  "limitations": [
+    "One model; target first only.",
+    "Generated fictional names do not guarantee real-world nonexistence.",
+    "Direct and split wording is a bundled syntax intervention, not a pure abstract clarity manipulation.",
+    "No second human annotation; handcrafted semantic review plus automated invariants.",
+    "Scope pilot may select favorable contrasts; formal preregistration needs new data.",
+    "Procurement dates use chronological announcement < award < signing controls, but missing signing date is never inferred.",
+    "Date output uses YYYY-MM-DD; alternate representations retained as other strings, not silently normalized.",
+    "This expands an already explored scenario search; thresholds are screening rules, not corrected significance tests."
+  ],
+  "cross_model": "Exact same five-scenario jobs, definitions, gold and seed/order; native non-thinking chat template per model. Different model generation and architecture: not a parameter-count causal experiment."
+}

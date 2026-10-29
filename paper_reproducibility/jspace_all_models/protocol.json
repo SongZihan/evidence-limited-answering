@@ -1,0 +1,36 @@
+{
+  "models": {
+    "2b": "models/Qwen3.5-2B",
+    "27b": "models/Qwen3.5-27B"
+  },
+  "datasets": {
+    "company": "jspace_relation_binding",
+    "four": "jspace_cross_nohint",
+    "five": "jspace_five_scenarios"
+  },
+  "schedule": [
+    {
+      "model": "2b",
+      "datasets": [
+        "company",
+        "four"
+      ],
+      "n": 2076
+    },
+    {
+      "model": "27b",
+      "datasets": [
+        "company",
+        "four",
+        "five"
+      ],
+      "n": 3516
+    }
+  ],
+  "reused": "Qwen3.5-2B five scenarios: 1440 existing generations, native turn boundary normalized and audited. Qwen3-8B source runs retained for comparison.",
+  "scope": "Ten relation scenarios. Company: latest relation-binding formal dataset, all924 runs, no70pilot. Four: no-hint version. Five: locked new scenario corpus. Prior repeated difficulty variants and causal patches are not distinct scenarios and are not rerun.",
+  "settings": "BF16 eager, native non-thinking chat, greedy, max128 new tokens; same source jobs and generation order. Company batch12 and other datasets batch16. Model generation ends on either tokenizer EOS or native im_end.",
+  "controls": "No prompt edits, no additional relationship warnings, no revised scoring or screening thresholds. Original company dev/validation retained for reporting, already observed historically.",
+  "limits": "Same-generation 2B/27B contrast still changes architecture/training, not a causal size-only experiment. Company design differs from other nine; do not pool their rates.",
+  "python": "./llm_knowledge/.venv/bin/python"
+}

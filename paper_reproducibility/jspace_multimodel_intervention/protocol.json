@@ -1,0 +1,52 @@
+{
+  "models": {
+    "qwen2b": {
+      "path": "models/Qwen3.5-2B",
+      "runtime": "./llm_knowledge/.venv/bin/python",
+      "layers": [
+        19,
+        22
+      ],
+      "gpu": 0
+    },
+    "qwen27b": {
+      "path": "models/Qwen3.5-27B",
+      "runtime": "./llm_knowledge/.venv/bin/python",
+      "layers": [
+        52,
+        59
+      ],
+      "gpu": 1
+    },
+    "kimi": {
+      "path": "models/Kimi-VL-A3B-Instruct",
+      "runtime": "python",
+      "layers": [
+        22,
+        25
+      ],
+      "gpu": 0,
+      "pythonpath": "./jspace_more_models/kimi_runtime"
+    }
+  },
+  "seed": 20261016,
+  "max_new_tokens": 128,
+  "ranks": [
+    1,
+    4
+  ],
+  "scope": "Three models; 192 round1 pairs and 984 historical pairs per model. Development is only round1 T01-T04; validation and history processed after selection lock.",
+  "layer_rule": "round((num_layers-1)*29/35), round((num_layers-1)*33/35), zero indexed. Architecture differs; relative depths are not functionally equivalent.",
+  "selection": "Uncentered SVD all48 development weak pairs across three evidence conditions; no correctness filtering. Eligible: source errors decrease, supported and swapped each lose <=1. Max absent null gain; tie lower rank then layer. Otherwise max macro correctness gain, flagged nonselective. If any of48 natural PN pairs unavailable, no fitted subspace and no intervention; still complete behavior on all material.",
+  "gate": "Original behavior gate reported as diagnostic. Unlike round1, failure does not prohibit preregistered exploratory method evaluation. No positive replication claim when gate fails.",
+  "scoring": "Primary semantic JSON score removes exactly one complete outer Markdown fence. Strict score also retained for every output. No other cleanup. This permits Kimi formatting but cannot hide malformed values or wrong fields.",
+  "interventions": "Natural PN only, one-time last-position post-decoder-block residual replacement. Same facts donor. Forward/reverse/full/norm-matched fixed random/self. All available validation and historical pairs, both forms/orders; development selection uses weak only.",
+  "truncation": "128 primary cap; if truncated deterministically rerun identical condition from prefix at512 then2048. Keep attempts. Replay and self use identical fixed maximum2048 to avoid unequal stopping budgets; only terminated answers scored correct.",
+  "success": "On held-out round1 weak absent: null gain>=4/16 and >=3/4 templates positive; supported and swapped each>=15/16 and <=1 loss; source-to-null exceeds format-to-null; gain>random; all48 pairs available.",
+  "limits": [
+    "Historical tasks already observed; new model intervention outcomes held out from fitting, not a fresh dataset.",
+    "No cross-model J-lens exists here. This experiment tests causal subspace method, not transferred J-lens weights.",
+    "Native donor answer context and syntax may mediate effects; not proof of relation binding.",
+    "Models with zero baseline errors cannot demonstrate repair."
+  ]
+}
